@@ -1,26 +1,22 @@
-const CACHE = 'pkmn-tracker-v1';
-const ASSETS = ['/followcollection/', '/followcollection/index.html'];
+const CACHE = 'pkmn-v2';
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
   self.skipWaiting();
 });
 
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))));
+  e.waitUntil(
+    caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))))
+  );
   self.clients.claim();
 });
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   if (e.request.url.includes('api.anthropic.com')) return;
+  if (e.request.url.includes('fonts.googleapis.com')) return;
+  if (e.request.url.includes('cdn.jsdelivr.net')) return;
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request).then(res => {
-      if (res.ok) {
-        const clone = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
-      }
-      return res;
-    }).catch(() => cached))
+    fetch(e.request).catch(() => caches.match(e.request))
   );
 });
