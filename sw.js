@@ -1,4 +1,4 @@
-const CACHE = 'pkmn-v2';
+const CACHE = 'pkmn-v3';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
