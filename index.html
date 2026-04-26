@@ -386,7 +386,7 @@ async function searchCards(q){
   const el=document.getElementById('apiResults');
   el.innerHTML=`<div class="api-loading"><span class="spinner-inline"></span>Recherche...</div>`;
   try{
-    const r=await fetch(`${POKE_API}/cards?q=name:"${encodeURIComponent(q)}*" language:fr&pageSize=20&orderBy=-set.releaseDate`);
+    const r=await fetch(`${POKE_API}/cards?q=name:"${encodeURIComponent(q)}*"&pageSize=20&orderBy=-set.releaseDate`);
     const d=await r.json();
     renderApiResults(d.data||[],el);
   }catch(e){el.innerHTML=`<div class="api-loading">Erreur réseau. Utilise la saisie manuelle.</div>`;}
