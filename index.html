@@ -9,25 +9,20 @@
 <link rel="manifest" href="manifest.json"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0f0f12;--bg2:#17171d;--bg3:#1f1f28;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#f0f0f5;--text2:#888899;--text3:#444455;--red:#e83a4a;--red2:#ff6b7a;--green:#1db97a;--amber:#f5a623;--blue:#4a9eff;--purple:#9b7fe8;--mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;--r:14px;--r2:20px;--safe-top:env(safe-area-inset-top,0px);--safe-bot:env(safe-area-inset-bottom,0px);}
+:root{--bg:#0f0f12;--bg2:#17171d;--bg3:#1f1f28;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#f0f0f5;--text2:#888899;--text3:#444455;--red:#e83a4a;--red2:#ff6b7a;--green:#1db97a;--amber:#f5a623;--blue:#4a9eff;--mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;--r:14px;--r2:20px;--safe-top:env(safe-area-inset-top,0px);--safe-bot:env(safe-area-inset-bottom,0px);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);overscroll-behavior:none;}
 body{display:flex;flex-direction:column;height:100dvh;}
-.topbar{background:var(--bg2);border-bottom:.5px solid var(--border);padding:calc(var(--safe-top) + 12px) 16px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.topbar{background:var(--bg2);border-bottom:.5px solid var(--border);padding:calc(var(--safe-top)+12px) 16px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .topbar-title{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:-.02em;}
 .topbar-sub{font-size:10px;color:var(--text2);margin-top:1px;font-family:var(--mono);}
 .icon-btn{width:36px;height:36px;border-radius:10px;background:var(--bg3);border:.5px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;}
-.quota-wrap{background:var(--bg2);border-bottom:.5px solid var(--border);padding:7px 16px;flex-shrink:0;}
-.quota-row{display:flex;justify-content:space-between;margin-bottom:4px;}
-.quota-label{font-size:10px;color:var(--text2);font-family:var(--mono);}
-.quota-track{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;}
-.quota-fill{height:100%;border-radius:2px;transition:width .4s,background .3s;}
 .tabs{display:flex;border-bottom:.5px solid var(--border);background:var(--bg2);flex-shrink:0;}
 .tab{flex:1;padding:10px 4px;font-size:11px;font-weight:500;color:var(--text2);background:none;border:none;cursor:pointer;font-family:var(--sans);position:relative;}
 .tab.active{color:var(--red2);}
 .tab.active::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--red);border-radius:2px 2px 0 0;}
-.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 16px calc(var(--safe-bot) + 80px);}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:.5px solid var(--border);padding:8px 16px calc(var(--safe-bot) + 6px);display:flex;justify-content:center;z-index:50;}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 16px calc(var(--safe-bot)+80px);}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:.5px solid var(--border);padding:8px 16px calc(var(--safe-bot)+6px);display:flex;justify-content:center;z-index:50;}
 .fab{display:flex;align-items:center;gap:8px;background:var(--red);color:white;border:none;border-radius:24px;padding:12px 28px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--sans);}
 .fab:active{transform:scale(.97);}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
@@ -58,25 +53,34 @@ body{display:flex;flex-direction:column;height:100dvh;}
 .b-h{background:rgba(155,127,232,.15);color:#c4aaff;border:.5px solid rgba(155,127,232,.3);}
 .b-psa{background:rgba(29,185,122,.15);color:#1db97a;border:.5px solid rgba(29,185,122,.3);}
 .b-stale{background:rgba(232,58,74,.1);color:var(--red2);border:.5px solid rgba(232,58,74,.2);}
-.ci-right{text-align:right;flex-shrink:0;min-width:60px;}
+.ci-right{text-align:right;flex-shrink:0;min-width:70px;}
 .pv{font-size:14px;font-weight:700;font-family:var(--mono);}
 .pv-buy{font-size:9px;color:var(--text2);font-family:var(--mono);margin-top:1px;}
 .pc{font-size:10px;margin-top:1px;font-family:var(--mono);}
+
+/* DETAIL */
 .detail-card{background:var(--bg2);border:.5px solid var(--border);border-radius:var(--r2);padding:13px;margin-bottom:10px;}
-.detail-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.detail-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px;}
 .detail-name{font-size:15px;font-weight:600;}
 .detail-meta{font-size:10px;color:var(--text2);margin-top:2px;font-family:var(--mono);}
-.detail-avg{font-size:21px;font-weight:700;font-family:var(--mono);}
-.detail-avgsub{font-size:9px;color:var(--text2);font-family:var(--mono);}
-.src-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:9px;}
-.src{background:var(--bg3);border-radius:10px;padding:9px 11px;border:.5px solid var(--border);}
-.src-n{font-size:9px;color:var(--text2);font-family:var(--mono);margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em;}
-.src-p{font-size:14px;font-weight:700;font-family:var(--mono);}
-.profit{background:var(--bg3);border-radius:10px;padding:9px 11px;border:.5px solid var(--border);margin-bottom:9px;}
+.prices-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.price-block{background:var(--bg3);border-radius:12px;padding:12px;border:.5px solid var(--border);}
+.price-block-logo{font-size:10px;color:var(--text2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;display:flex;align-items:center;gap:4px;}
+.price-block-main{font-size:20px;font-weight:700;font-family:var(--mono);}
+.price-block-sub{font-size:9px;color:var(--text2);margin-top:3px;font-family:var(--mono);}
+.price-block-range{font-size:10px;color:var(--text2);margin-top:2px;font-family:var(--mono);}
+.price-source-badge{font-size:8px;padding:1px 5px;border-radius:10px;font-weight:600;margin-left:4px;}
+.badge-cm{background:rgba(29,185,122,.2);color:var(--green);}
+.badge-ebay{background:rgba(245,166,35,.2);color:var(--amber);}
+.badge-live{background:rgba(74,158,255,.2);color:var(--blue);}
+.profit-block{background:var(--bg3);border-radius:10px;padding:10px 12px;border:.5px solid var(--border);margin-bottom:10px;}
 .chart-wrap{position:relative;width:100%;height:100px;margin-bottom:8px;}
 .detail-actions{display:flex;gap:6px;}
 .act-btn{flex:1;padding:9px;border-radius:10px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--sans);border:.5px solid var(--border2);background:var(--bg3);color:var(--text2);}
-.act-btn:active{background:var(--bg);}
+.last-update{font-size:9px;color:var(--text2);font-family:var(--mono);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+
+/* PLANNING */
 .info-box{background:var(--bg2);border:.5px solid var(--border);border-radius:var(--r);padding:11px 13px;font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:11px;}
 .info-box strong{color:var(--text);font-weight:600;}
 .batch-card{background:var(--bg2);border:.5px solid var(--border);border-radius:var(--r);padding:11px 13px;margin-bottom:7px;}
@@ -93,8 +97,10 @@ body{display:flex;flex-direction:column;height:100dvh;}
 .progress-bar{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;margin-bottom:11px;}
 .progress-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .4s;}
 .snap-btn{width:100%;padding:11px;border-radius:var(--r);background:var(--bg2);border:.5px solid var(--border2);color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans);}
+
+/* HISTORY */
 .hist-card{background:var(--bg2);border:.5px solid var(--border);border-radius:var(--r2);padding:11px 13px;margin-bottom:9px;}
-.hist-card-name{font-size:13px;font-weight:600;margin-bottom:7px;}
+.hist-card-name{font-size:13px;font-weight:600;margin-bottom:7px;display:flex;align-items:center;gap:6px;}
 .hist-table{width:100%;border-collapse:collapse;font-size:11px;font-family:var(--mono);}
 .hist-table th{font-size:9px;color:var(--text2);text-align:left;padding:3px 4px;border-bottom:.5px solid var(--border);text-transform:uppercase;letter-spacing:.04em;}
 .hist-table td{padding:5px 4px;border-bottom:.5px solid var(--border);}
@@ -110,9 +116,6 @@ body{display:flex;flex-direction:column;height:100dvh;}
 .modal{background:var(--bg2);border:.5px solid var(--border2);border-radius:24px 24px 0 0;padding:20px 20px calc(var(--safe-bot)+20px);width:100%;max-height:92dvh;overflow-y:auto;}
 .modal-handle{width:36px;height:3px;background:var(--border2);border-radius:2px;margin:0 auto 14px;}
 .modal-title{font-size:16px;font-weight:700;margin-bottom:14px;}
-.modal-tabs{display:flex;gap:4px;background:var(--bg3);border-radius:10px;padding:3px;margin-bottom:14px;}
-.modal-tab{flex:1;padding:7px;border:none;background:transparent;border-radius:8px;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;font-family:var(--sans);}
-.modal-tab.active{background:var(--bg2);color:var(--text);border:.5px solid var(--border2);}
 .fg{margin-bottom:11px;}
 .fl{font-size:10px;color:var(--text2);margin-bottom:4px;display:block;font-family:var(--mono);text-transform:uppercase;letter-spacing:.04em;}
 .fi{width:100%;background:var(--bg3);border:.5px solid var(--border2);border-radius:11px;padding:11px 13px;font-size:14px;color:var(--text);font-family:var(--sans);outline:none;}
@@ -123,13 +126,14 @@ body{display:flex;flex-direction:column;height:100dvh;}
 .mbtn-p:active{transform:scale(.98);}
 .mbtn-s{flex:1;padding:13px;border-radius:13px;background:var(--bg3);border:.5px solid var(--border2);color:var(--text2);font-size:15px;cursor:pointer;font-family:var(--sans);}
 
-/* SEARCH AUTOCOMPLETE */
-.search-mode{display:flex;flex-direction:column;gap:10px;}
-.api-search-wrap{position:relative;}
-.api-search-inp{width:100%;background:var(--bg3);border:.5px solid var(--border2);border-radius:11px;padding:11px 13px 11px 38px;font-size:14px;color:var(--text);font-family:var(--sans);outline:none;}
-.api-search-inp:focus{border-color:rgba(255,255,255,.25);}
-.api-search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none;}
-.api-results{background:var(--bg3);border:.5px solid var(--border2);border-radius:11px;overflow:hidden;max-height:280px;overflow-y:auto;}
+/* SET BROWSER */
+.set-search{width:100%;background:var(--bg3);border:.5px solid var(--border2);border-radius:10px;padding:9px 12px;font-size:13px;color:var(--text);font-family:var(--sans);outline:none;margin-bottom:8px;}
+.set-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;max-height:260px;overflow-y:auto;}
+.set-item{background:var(--bg3);border:.5px solid var(--border);border-radius:10px;padding:9px 10px;cursor:pointer;text-align:center;}
+.set-item:active{background:var(--bg2);}
+.set-name{font-size:11px;font-weight:600;line-height:1.3;}
+.set-meta{font-size:9px;color:var(--text2);margin-top:2px;font-family:var(--mono);}
+.api-results{background:var(--bg3);border:.5px solid var(--border2);border-radius:11px;overflow:hidden;max-height:300px;overflow-y:auto;}
 .api-result{display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;border-bottom:.5px solid var(--border);}
 .api-result:last-child{border-bottom:none;}
 .api-result:active{background:var(--bg2);}
@@ -138,23 +142,16 @@ body{display:flex;flex-direction:column;height:100dvh;}
 .api-result-info{flex:1;min-width:0;}
 .api-result-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .api-result-meta{font-size:10px;color:var(--text2);margin-top:2px;font-family:var(--mono);}
-.api-result-price{font-size:11px;color:var(--green);font-family:var(--mono);}
+.api-result-price{font-size:11px;color:var(--green);font-family:var(--mono);margin-top:2px;}
 .api-loading{padding:16px;text-align:center;font-size:12px;color:var(--text2);}
-.selected-card-preview{background:var(--bg3);border:.5px solid var(--green);border-radius:11px;padding:11px 13px;display:flex;align-items:center;gap:10px;}
-.selected-card-preview img{width:36px;height:50px;border-radius:6px;object-fit:cover;}
-.selected-card-info{flex:1;min-width:0;}
-.selected-card-name{font-size:13px;font-weight:600;}
-.selected-card-meta{font-size:10px;color:var(--text2);margin-top:2px;font-family:var(--mono);}
-.clear-sel{background:none;border:none;color:var(--text2);font-size:18px;cursor:pointer;padding:4px;}
-
-/* SET BROWSER */
-.set-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;max-height:240px;overflow-y:auto;}
-.set-item{background:var(--bg3);border:.5px solid var(--border);border-radius:10px;padding:9px 10px;cursor:pointer;text-align:center;}
-.set-item:active{background:var(--bg2);}
-.set-item.selected{border-color:var(--blue);}
-.set-name{font-size:11px;font-weight:600;line-height:1.3;}
-.set-meta{font-size:9px;color:var(--text2);margin-top:2px;font-family:var(--mono);}
-.set-search{width:100%;background:var(--bg3);border:.5px solid var(--border2);border-radius:10px;padding:9px 12px;font-size:13px;color:var(--text);font-family:var(--sans);outline:none;margin-bottom:8px;}
+.selected-preview{background:var(--bg3);border:.5px solid var(--green);border-radius:11px;padding:11px 13px;display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.selected-preview img{width:36px;height:50px;border-radius:6px;object-fit:cover;}
+.selected-info{flex:1;min-width:0;}
+.selected-name{font-size:13px;font-weight:600;}
+.selected-meta{font-size:10px;color:var(--text2);margin-top:2px;font-family:var(--mono);}
+.selected-prices{font-size:11px;margin-top:4px;font-family:var(--mono);}
+.clear-btn{background:none;border:none;color:var(--text2);font-size:18px;cursor:pointer;padding:4px;}
+.back-btn{background:none;border:none;color:var(--text2);cursor:pointer;font-size:20px;padding:4px 8px 4px 0;}
 
 .toast{position:fixed;bottom:calc(var(--safe-bot)+80px);left:50%;transform:translateX(-50%);background:var(--bg3);border:.5px solid var(--border2);border-radius:24px;padding:10px 20px;font-size:13px;white-space:nowrap;z-index:200;opacity:0;transition:opacity .2s;pointer-events:none;}
 .toast.show{opacity:1;}
@@ -184,14 +181,6 @@ body{display:flex;flex-direction:column;height:100dvh;}
   </div>
 </div>
 
-<div class="quota-wrap">
-  <div class="quota-row">
-    <span class="quota-label">Quota API semaine</span>
-    <span class="quota-label" id="quotaVal">0/4 lots</span>
-  </div>
-  <div class="quota-track"><div class="quota-fill" id="quotaFill" style="width:0%"></div></div>
-</div>
-
 <div class="tabs">
   <button class="tab active" onclick="sw('collection',this)">Collection</button>
   <button class="tab" onclick="sw('planning',this)">Planning</button>
@@ -219,12 +208,12 @@ body{display:flex;flex-direction:column;height:100dvh;}
 
   <div id="planningView" style="display:none;">
     <div style="height:10px;"></div>
-    <div class="info-box"><strong>Stratégie :</strong> lots de 10 cartes, max 4/semaine (~3% quota gratuit). Les plus chères passent en premier.</div>
+    <div class="info-box"><strong>Stratégie :</strong> prix récupérés en direct via PokéTCG.io (CardMarket + eBay réels). Snapshots automatiques chaque semaine.</div>
     <div id="progressWrap" style="display:none;">
       <div style="font-size:11px;color:var(--text2);font-family:var(--mono);margin-bottom:5px;" id="batchLabel"></div>
       <div class="progress-bar"><div class="progress-fill" id="batchFill" style="width:0%"></div></div>
     </div>
-    <button class="run-btn" id="runBtn" onclick="runNextBatch()">⚡ Lancer le prochain lot</button>
+    <button class="run-btn" id="runBtn" onclick="runNextBatch()">⚡ Actualiser les prix maintenant</button>
     <div id="queueContent"></div>
     <button class="snap-btn" onclick="forceSnap()">💾 Snapshot hebdomadaire maintenant</button>
     <div style="height:8px;"></div>
@@ -242,103 +231,64 @@ body{display:flex;flex-direction:column;height:100dvh;}
 
 <div id="toast" class="toast"></div>
 
-<!-- MODAL AJOUT CARTE -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalBg(event)">
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title">Ajouter une carte</div>
 
-    <div class="modal-tabs">
-      <button class="modal-tab active" onclick="switchModalTab('search',this)">🔍 Recherche par nom</button>
-      <button class="modal-tab" onclick="switchModalTab('set',this)">📦 Par extension</button>
-      <button class="modal-tab" onclick="switchModalTab('manual',this)">✏️ Manuellement</button>
+    <!-- SELECTED PREVIEW -->
+    <div id="selectedPreview" style="display:none;"></div>
+
+    <!-- STEP 1: CHOOSE SET -->
+    <div id="stepSet">
+      <input class="set-search" id="setSearchInp" placeholder="🔍 Chercher une extension..." oninput="filterSets(this.value)"/>
+      <div class="set-grid" id="setGrid"></div>
     </div>
 
-    <!-- TAB : RECHERCHE PAR NOM -->
-    <div id="tabSearch">
-      <div id="selectedPreview" style="display:none;margin-bottom:10px;"></div>
-      <div class="api-search-wrap">
-        <span class="api-search-icon">🔍</span>
-        <input class="api-search-inp" id="apiSearchInp" placeholder="Charizard, Pikachu, Dracaufeu..." oninput="debouncedSearch(this.value)"/>
+    <!-- STEP 2: CHOOSE CARD -->
+    <div id="stepCards" style="display:none;">
+      <div style="display:flex;align-items:center;gap:4px;margin-bottom:8px;">
+        <button class="back-btn" onclick="backToSets()">←</button>
+        <span id="setCardsTitle" style="font-size:13px;font-weight:600;"></span>
       </div>
-      <div id="apiResults" style="margin-top:8px;"></div>
-      <div id="searchCondSection" style="display:none;margin-top:10px;">
-        <div class="frow">
-          <div class="fg"><label class="fl">État</label>
-            <select class="fi" id="sCond"><option>Near Mint</option><option>Lightly Played</option><option>PSA 10</option><option>PSA 9</option><option>PSA 8</option></select>
-          </div>
-          <div class="fg"><label class="fl">Prix achat (€)</label>
-            <input class="fi" id="sBuy" placeholder="0.00" type="number" step="0.01"/>
-          </div>
-        </div>
-      </div>
+      <input class="set-search" id="cardSearchInp" placeholder="🔍 Filtrer les cartes..." oninput="filterSetCards(this.value)"/>
+      <div class="api-results" id="setCardsGrid"></div>
     </div>
 
-    <!-- TAB : PAR EXTENSION -->
-    <div id="tabSet" style="display:none;">
-      <div id="setSelectedPreview" style="display:none;margin-bottom:10px;"></div>
-      <input class="set-search" id="setSearchInp" placeholder="Chercher une extension..." oninput="filterSets(this.value)"/>
-      <div id="setGrid" class="set-grid"></div>
-      <div id="setCardsList" style="display:none;margin-top:10px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <button onclick="backToSets()" style="background:none;border:none;color:var(--text2);cursor:pointer;font-size:18px;">←</button>
-          <span id="setCardsTitle" style="font-size:13px;font-weight:600;"></span>
-        </div>
-        <input class="set-search" id="setCardSearch" placeholder="Filtrer les cartes..." oninput="filterSetCards(this.value)"/>
-        <div id="setCardsGrid" class="api-results"></div>
-      </div>
-      <div id="setCondSection" style="display:none;margin-top:10px;">
-        <div class="frow">
-          <div class="fg"><label class="fl">État</label>
-            <select class="fi" id="setCond"><option>Near Mint</option><option>Lightly Played</option><option>PSA 10</option><option>PSA 9</option><option>PSA 8</option></select>
-          </div>
-          <div class="fg"><label class="fl">Prix achat (€)</label>
-            <input class="fi" id="setBuy" placeholder="0.00" type="number" step="0.01"/>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB : MANUEL -->
-    <div id="tabManual" style="display:none;">
-      <div class="fg"><label class="fl">Nom</label><input class="fi" id="fName" placeholder="ex: Dracaufeu V Alt Art"/></div>
+    <!-- STEP 3: CONDITION + BUY PRICE -->
+    <div id="stepCond" style="display:none;">
       <div class="frow">
-        <div class="fg"><label class="fl">Extension</label><input class="fi" id="fSet" placeholder="EB / SV..."/></div>
-        <div class="fg"><label class="fl">Numéro</label><input class="fi" id="fNum" placeholder="182/185"/></div>
-      </div>
-      <div class="frow">
-        <div class="fg"><label class="fl">Rareté</label>
-          <select class="fi" id="fRarity"><option>Alt Art</option><option>Secret Rare</option><option>Rainbow Rare</option><option>Gold Rare</option><option>Full Art</option><option>Ultra Rare</option><option>Rare Holo</option></select>
-        </div>
         <div class="fg"><label class="fl">État</label>
-          <select class="fi" id="fCond"><option>Near Mint</option><option>Lightly Played</option><option>PSA 10</option><option>PSA 9</option><option>PSA 8</option></select>
+          <select class="fi" id="condSel"><option>Near Mint</option><option>Lightly Played</option><option>PSA 10</option><option>PSA 9</option><option>PSA 8</option></select>
         </div>
-      </div>
-      <div class="frow">
-        <div class="fg"><label class="fl">Emoji</label><input class="fi" id="fEmoji" placeholder="🐉" maxlength="2"/></div>
-        <div class="fg"><label class="fl">Prix achat (€)</label><input class="fi" id="fBuy" placeholder="0.00" type="number" step="0.01"/></div>
+        <div class="fg"><label class="fl">Prix achat (€)</label>
+          <input class="fi" id="buyInp" placeholder="0.00" type="number" step="0.01"/>
+        </div>
       </div>
     </div>
 
     <div class="modal-btns">
       <button class="mbtn-s" onclick="closeModal()">Annuler</button>
-      <button class="mbtn-p" onclick="addCard()">Ajouter</button>
+      <button class="mbtn-p" id="modalAddBtn" onclick="addCard()">Ajouter</button>
     </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
-const CK='pkmn_v4_cards',SK='pkmn_v4_snaps',QK='pkmn_v4_quota',LRK='pkmn_v4_lr';
-const BATCH=10,MAX_BATCHES=4,TOTAL_FREE=140;
-const POKE_API='https://api.pokemontcg.io/v2';
+const CK='pkmn_v5_cards', SK='pkmn_v5_snaps', QK='pkmn_v5_quota', LRK='pkmn_v5_lr';
+// Clé eBay — à remplir quand tu l'as
+const EBAY_APP_ID = '';
+const POKE_API = 'https://api.pokemontcg.io/v2';
+const BATCH = 15, MAX_BATCHES = 4;
 
-let cards=[],snaps={},quota={week:'',used:0},lastRun=null;
-let selCard=null,curTab='collection',filterMode='',chartInst=null;
-let modalTab='search',selectedApiCard=null,allSets=[],currentSetCards=[],currentSet=null;
-let searchTimer=null;
+let cards=[], snaps={}, quota={week:'',used:0}, lastRun=null;
+let selCard=null, curTab='collection', filterMode='', chartInst=null;
+let allSets=[], currentSetCards=[], selectedApiCard=null;
 
 function wkKey(d){const dt=d||new Date(),y=dt.getFullYear(),s=new Date(y,0,1);return `${y}-W${String(Math.ceil(((dt-s)/864e5+s.getDay()+1)/7)).padStart(2,'0')}`;}
+function daysToMonday(){const d=new Date().getDay();return d===1?7:(8-d)%7||7;}
 
 const store={
   async get(k){try{if(window.storage)return window.storage.get(k);return{value:localStorage.getItem(k)};}catch(e){return{value:localStorage.getItem(k)};}},
@@ -348,9 +298,13 @@ const store={
 async function load(){
   try{const r=await store.get(CK);if(r&&r.value)cards=JSON.parse(r.value);}catch(e){cards=[];}
   try{const r=await store.get(SK);if(r&&r.value)snaps=JSON.parse(r.value);}catch(e){snaps={};}
-  try{const r=await store.get(QK);if(r&&r.value){quota=JSON.parse(r.value);if(quota.week!==wkKey()){quota={week:wkKey(),used:0};await saveQuota();}}}catch(e){quota={week:wkKey(),used:0};}
+  try{
+    const r=await store.get(QK);
+    if(r&&r.value){quota=JSON.parse(r.value);if(quota.week!==wkKey()){quota={week:wkKey(),used:0};await saveQuota();}}
+  }catch(e){quota={week:wkKey(),used:0};}
   try{const r=await store.get(LRK);if(r&&r.value)lastRun=JSON.parse(r.value);}catch(e){lastRun=null;}
   document.getElementById('loadingScreen').style.display='none';
+  await checkAutoSnap();
   render();
   loadSets();
 }
@@ -359,75 +313,118 @@ async function saveAll(){await store.set(CK,JSON.stringify(cards));await store.s
 async function saveQuota(){await store.set(QK,JSON.stringify(quota));}
 async function saveLastRun(){await store.set(LRK,JSON.stringify(lastRun));}
 
+// Auto snapshot chaque semaine
+async function checkAutoSnap(){
+  if(!cards.length)return;
+  const wk=wkKey();
+  if(!snaps[wk]&&cards.some(c=>c.prices)){
+    await forceSnap(true);
+  }
+}
+
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
-function openModal(){modalTab='search';selectedApiCard=null;currentSet=null;document.getElementById('modalOverlay').style.display='flex';resetSearchTab();}
-function closeModal(){document.getElementById('modalOverlay').style.display='none';}
-function closeModalBg(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
 
-function switchModalTab(tab,el){
-  modalTab=tab;
-  document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  ['tabSearch','tabSet','tabManual'].forEach(id=>document.getElementById(id).style.display='none');
-  document.getElementById('tab'+tab.charAt(0).toUpperCase()+tab.slice(1)).style.display='';
-}
-
-function resetSearchTab(){
-  selectedApiCard=null;
-  document.getElementById('apiSearchInp').value='';
-  document.getElementById('apiResults').innerHTML='';
-  document.getElementById('selectedPreview').style.display='none';
-  document.getElementById('searchCondSection').style.display='none';
-}
-
-// POKÉTCG API
-async function searchCards(q){
-  if(q.length<2)return;
-  const el=document.getElementById('apiResults');
-  el.innerHTML=`<div class="api-loading"><span class="spinner-inline"></span>Recherche...</div>`;
+// ── PRIX RÉELS via PokéTCG.io ──
+async function fetchRealPrices(card){
+  if(!card.pokeTcgId)return null;
   try{
-    const r=await fetch(`${POKE_API}/cards?q=name:"${encodeURIComponent(q)}*"&pageSize=20&orderBy=-set.releaseDate`);
+    const r=await fetch(`${POKE_API}/cards/${card.pokeTcgId}`);
     const d=await r.json();
-    renderApiResults(d.data||[],el);
-  }catch(e){el.innerHTML=`<div class="api-loading">Erreur réseau. Utilise la saisie manuelle.</div>`;}
+    const c=d.data;
+    if(!c)return null;
+    const cm=c.cardmarket?.prices;
+    const tcg=c.tcgplayer?.prices;
+    const cmPrice=cm?.averageSellPrice||cm?.avg1||cm?.trendPrice||null;
+    const tcgPrice=tcg?.holofoil?.market||tcg?.normal?.market||tcg?.['1stEditionHolofoil']?.market||null;
+
+    // eBay si clé dispo
+    let ebayPrice=null;
+    if(EBAY_APP_ID){
+      ebayPrice=await fetchEbayPrice(card);
+    }
+
+    return{
+      cm: cmPrice ? Math.round(cmPrice*100)/100 : null,
+      cm_low: cm?.lowPrice||null,
+      cm_high: cm?.highPrice||null,
+      cm_trend: cm?.trendPrice||null,
+      tcg: tcgPrice ? Math.round(tcgPrice*92)/100 : null, // USD→EUR ~0.92
+      ebay: ebayPrice,
+      ts: Date.now(),
+      at: new Date().toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})
+    };
+  }catch(e){return null;}
 }
 
-function renderApiResults(results,container){
-  if(!results.length){container.innerHTML=`<div class="api-loading">Aucun résultat. Essaie en anglais ou utilise la saisie manuelle.</div>`;return;}
-  container.innerHTML='';
-  const wrap=document.createElement('div');
-  wrap.className='api-results';
-  results.forEach(c=>{
-    const div=document.createElement('div');
-    div.className='api-result';
-    const img=c.images?.small?`<img class="api-result-img" src="${c.images.small}" loading="lazy" onerror="this.style.display='none'"/>`:`<div class="api-result-img-ph">🎴</div>`;
-    const mkt=c.tcgplayer?.prices?.holofoil?.market||c.tcgplayer?.prices?.normal?.market||null;
-    div.innerHTML=`${img}<div class="api-result-info"><div class="api-result-name">${c.name}</div><div class="api-result-meta">${c.set?.name||''} · ${c.number||''}/${c.set?.printedTotal||''} · ${c.rarity||''}</div>${mkt?`<div class="api-result-price">~${(mkt*0.92).toFixed(2)}€</div>`:''}</div>`;
-    div.onclick=()=>selectApiCard(c);
-    wrap.appendChild(div);
-  });
-  container.appendChild(wrap);
+async function fetchEbayPrice(card){
+  if(!EBAY_APP_ID)return null;
+  try{
+    const q=encodeURIComponent(`${card.name} ${card.set} pokemon french`);
+    const url=`https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findCompletedItems&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=${EBAY_APP_ID}&RESPONSE-DATA-FORMAT=JSON&categoryId=183454&keywords=${q}&itemFilter(0).name=Condition&itemFilter(0).value=3000&sortOrder=EndTimeSoonest&paginationInput.entriesPerPage=10`;
+    const r=await fetch(url);
+    const d=await r.json();
+    const items=d?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item||[];
+    if(!items.length)return null;
+    const prices=items.map(i=>parseFloat(i.sellingStatus?.[0]?.currentPrice?.[0]?.['__value__']||0)).filter(p=>p>0);
+    if(!prices.length)return null;
+    const avg=prices.reduce((a,b)=>a+b,0)/prices.length;
+    return Math.round(avg*100)/100;
+  }catch(e){return null;}
 }
 
-function selectApiCard(c){
-  selectedApiCard=c;
-  const mkt=c.tcgplayer?.prices?.holofoil?.market||c.tcgplayer?.prices?.normal?.market||null;
-  const prev=document.getElementById('selectedPreview');
-  prev.style.display='flex';
-  prev.className='selected-card-preview';
-  prev.innerHTML=`${c.images?.small?`<img src="${c.images.small}" style="width:36px;height:50px;border-radius:6px;object-fit:cover;">`:'<span style="font-size:24px;">🎴</span>'}<div class="selected-card-info"><div class="selected-card-name">${c.name}</div><div class="selected-card-meta">${c.set?.name||''} · ${c.number||''} · ${c.rarity||''}${mkt?` · ~${(mkt*0.92).toFixed(2)}€`:''}</div></div><button class="clear-sel" onclick="resetSearchTab()">×</button>`;
-  document.getElementById('apiResults').innerHTML='';
-  document.getElementById('apiSearchInp').value='';
-  document.getElementById('searchCondSection').style.display='';
+// ── BATCH : actualise N cartes en parallèle ──
+async function runNextBatch(){
+  const btn=document.getElementById('runBtn');
+  if(!cards.length){toast('Aucune carte.');return;}
+  btn.disabled=true;btn.textContent='⏳ Récupération des prix...';
+  document.getElementById('progressWrap').style.display='';
+  const toUpdate=[...cards].filter(c=>c.pokeTcgId);
+  const total=toUpdate.length;
+  let done=0;
+  document.getElementById('batchLabel').textContent=`0 / ${total} cartes actualisées`;
+  document.getElementById('batchFill').style.width='5%';
+
+  // Par batch de 5 en parallèle pour ne pas saturer
+  const PARALLEL=5;
+  for(let i=0;i<toUpdate.length;i+=PARALLEL){
+    const chunk=toUpdate.slice(i,i+PARALLEL);
+    await Promise.all(chunk.map(async card=>{
+      const p=await fetchRealPrices(card);
+      if(p)card.prices=p;
+      done++;
+      document.getElementById('batchLabel').textContent=`${done} / ${total} cartes actualisées`;
+      document.getElementById('batchFill').style.width=Math.round(done/total*90+5)+'%';
+    }));
+  }
+
+  document.getElementById('batchFill').style.width='100%';
+  lastRun={week:wkKey(),ts:Date.now()};
+  await saveAll();await saveLastRun();
+  setTimeout(()=>{document.getElementById('progressWrap').style.display='none';btn.disabled=false;btn.textContent='⚡ Actualiser les prix maintenant';},700);
+  render();
+  toast(`${done} cartes actualisées — prix CardMarket réels !`);
+  await checkAutoSnap();
 }
 
-function debouncedSearch(v){
-  clearTimeout(searchTimer);
-  if(v.length<2){document.getElementById('apiResults').innerHTML='';return;}
-  searchTimer=setTimeout(()=>searchCards(v),500);
+async function forceSnap(silent=false){
+  const wk=wkKey(),snap={};
+  for(const c of cards){
+    if(c.prices&&c.prices.cm){
+      snap[c.id]={
+        cm:c.prices.cm,
+        ebay:c.prices.ebay||null,
+        tcg:c.prices.tcg||null,
+        date:new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'})
+      };
+    }
+  }
+  if(!Object.keys(snap).length){if(!silent)toast('Aucun prix à sauvegarder.');return;}
+  snaps[wk]=snap;
+  await saveAll();
+  if(!silent)toast('💾 Snapshot sauvegardé !');
 }
 
-// SETS
+// ── SETS BROWSER ──
 async function loadSets(){
   try{
     const r=await fetch(`${POKE_API}/sets?orderBy=-releaseDate&pageSize=250`);
@@ -438,170 +435,154 @@ async function loadSets(){
 }
 
 function renderSets(sets){
-  const el=document.getElementById('setGrid');
-  if(!el)return;
-  el.innerHTML=sets.slice(0,60).map(s=>`
-    <div class="set-item" onclick="loadSetCards('${s.id}','${s.name.replace(/'/g,"\\'")}')">
-      ${s.images?.symbol?`<img src="${s.images.symbol}" style="height:24px;margin-bottom:4px;" onerror="this.style.display='none'"/>`:'' }
+  const el=document.getElementById('setGrid');if(!el)return;
+  el.innerHTML=sets.slice(0,80).map(s=>`
+    <div class="set-item" onclick="loadSetCards('${s.id}','${s.name.replace(/'/g,"\\'")}',${s.total||0})">
+      ${s.images?.symbol?`<img src="${s.images.symbol}" style="height:22px;margin-bottom:3px;" onerror="this.style.display='none'"/>`:''}
       <div class="set-name">${s.name}</div>
-      <div class="set-meta">${s.series||''} · ${s.total||''} cartes</div>
+      <div class="set-meta">${s.series||''} · ${s.total||'?'} cartes</div>
     </div>`).join('');
 }
 
 function filterSets(q){
-  const filtered=allSets.filter(s=>s.name.toLowerCase().includes(q.toLowerCase())||(s.series||'').toLowerCase().includes(q.toLowerCase()));
-  renderSets(filtered);
+  const f=allSets.filter(s=>s.name.toLowerCase().includes(q.toLowerCase())||(s.series||'').toLowerCase().includes(q.toLowerCase()));
+  renderSets(f);
 }
 
-async function loadSetCards(setId,setName){
-  currentSet={id:setId,name:setName};
-  document.getElementById('setGrid').style.display='none';
-  document.getElementById('setCardsList').style.display='';
-  document.getElementById('setCardsTitle').textContent=setName;
+async function loadSetCards(setId,setName,total){
+  document.getElementById('stepSet').style.display='none';
+  document.getElementById('stepCards').style.display='';
+  document.getElementById('setCardsTitle').textContent=setName+` (${total})`;
   const el=document.getElementById('setCardsGrid');
-  el.innerHTML=`<div class="api-loading"><span class="spinner-inline"></span>Chargement des cartes...</div>`;
+  el.innerHTML=`<div class="api-loading"><span class="spinner-inline"></span>Chargement...</div>`;
   try{
     const r=await fetch(`${POKE_API}/cards?q=set.id:${setId}&pageSize=250&orderBy=number`);
     const d=await r.json();
     currentSetCards=d.data||[];
-    renderSetCards(currentSetCards,el);
+    renderSetCards(currentSetCards);
   }catch(e){el.innerHTML=`<div class="api-loading">Erreur réseau.</div>`;}
 }
 
-function renderSetCards(cards,container){
-  container.innerHTML='';
-  cards.forEach(c=>{
+function renderSetCards(list){
+  const el=document.getElementById('setCardsGrid');
+  el.innerHTML='';
+  list.forEach(c=>{
     const div=document.createElement('div');
     div.className='api-result';
-    const img=c.images?.small?`<img class="api-result-img" src="${c.images.small}" loading="lazy" onerror="this.style.display='none'"/>`:`<div class="api-result-img-ph">🎴</div>`;
-    const mkt=c.tcgplayer?.prices?.holofoil?.market||c.tcgplayer?.prices?.normal?.market||null;
-    div.innerHTML=`${img}<div class="api-result-info"><div class="api-result-name">${c.name}</div><div class="api-result-meta">${c.number||''}/${c.set?.printedTotal||''} · ${c.rarity||''}</div>${mkt?`<div class="api-result-price">~${(mkt*0.92).toFixed(2)}€</div>`:''}</div>`;
-    div.onclick=()=>selectSetCard(c);
-    container.appendChild(div);
+    const cm=c.cardmarket?.prices?.averageSellPrice||c.cardmarket?.prices?.trendPrice||null;
+    const tcg=c.tcgplayer?.prices?.holofoil?.market||c.tcgplayer?.prices?.normal?.market||null;
+    const priceStr=cm?`🟢 CM: ${cm.toFixed(2)}€`:(tcg?`🔵 TCG: ${(tcg*0.92).toFixed(2)}€`:'');
+    div.innerHTML=`
+      ${c.images?.small?`<img class="api-result-img" src="${c.images.small}" loading="lazy" onerror="this.style.display='none'"/>`:`<div class="api-result-img-ph">🎴</div>`}
+      <div class="api-result-info">
+        <div class="api-result-name">${c.name}</div>
+        <div class="api-result-meta">${c.number}/${c.set?.printedTotal||'?'} · ${c.rarity||'—'}</div>
+        ${priceStr?`<div class="api-result-price">${priceStr}</div>`:''}
+      </div>`;
+    div.onclick=()=>selectCard(c);
+    el.appendChild(div);
   });
 }
 
 function filterSetCards(q){
-  const el=document.getElementById('setCardsGrid');
-  const filtered=currentSetCards.filter(c=>c.name.toLowerCase().includes(q.toLowerCase())||(c.number||'').includes(q));
-  renderSetCards(filtered,el);
+  const f=currentSetCards.filter(c=>c.name.toLowerCase().includes(q.toLowerCase())||(c.number||'').includes(q));
+  renderSetCards(f);
 }
 
-function selectSetCard(c){
+function selectCard(c){
   selectedApiCard=c;
-  const mkt=c.tcgplayer?.prices?.holofoil?.market||c.tcgplayer?.prices?.normal?.market||null;
-  const prev=document.getElementById('setSelectedPreview');
+  const cm=c.cardmarket?.prices?.averageSellPrice||c.cardmarket?.prices?.trendPrice||null;
+  const tcg=c.tcgplayer?.prices?.holofoil?.market||c.tcgplayer?.prices?.normal?.market||null;
+  document.getElementById('stepCards').style.display='none';
+  document.getElementById('stepSet').style.display='none';
+  const prev=document.getElementById('selectedPreview');
   prev.style.display='flex';
-  prev.className='selected-card-preview';
-  prev.innerHTML=`${c.images?.small?`<img src="${c.images.small}" style="width:36px;height:50px;border-radius:6px;object-fit:cover;">`:'<span style="font-size:24px;">🎴</span>'}<div class="selected-card-info"><div class="selected-card-name">${c.name}</div><div class="selected-card-meta">${c.set?.name||''} · ${c.number||''} · ${c.rarity||''}${mkt?` · ~${(mkt*0.92).toFixed(2)}€`:''}</div></div>`;
-  document.getElementById('setCardsList').style.display='none';
-  document.getElementById('setGrid').style.display='none';
-  document.getElementById('setCondSection').style.display='';
+  prev.className='selected-preview';
+  prev.innerHTML=`
+    ${c.images?.small?`<img src="${c.images.small}">`:'<span style="font-size:24px;">🎴</span>'}
+    <div class="selected-info">
+      <div class="selected-name">${c.name}</div>
+      <div class="selected-meta">${c.set?.name||''} · ${c.number||''} · ${c.rarity||''}</div>
+      <div class="selected-prices">${cm?`🟢 CM: ${cm.toFixed(2)}€  `:''} ${tcg?`🔵 TCG: ${(tcg*0.92).toFixed(2)}€`:''}</div>
+    </div>
+    <button class="clear-btn" onclick="backToSets()">×</button>`;
+  document.getElementById('stepCond').style.display='';
 }
 
 function backToSets(){
-  document.getElementById('setCardsList').style.display='none';
-  document.getElementById('setGrid').style.display='grid';
-  currentSet=null;
+  selectedApiCard=null;
+  document.getElementById('selectedPreview').style.display='none';
+  document.getElementById('stepCards').style.display='none';
+  document.getElementById('stepCond').style.display='none';
+  document.getElementById('stepSet').style.display='';
+  document.getElementById('setSearchInp').value='';
+  renderSets(allSets);
 }
 
-// ADD CARD
-function emojiFor(r){return{'Alt Art':'🐉','Secret Rare':'✨','Rainbow Rare':'🌈','Gold Rare':'🌟','Full Art':'🎨','Ultra Rare':'💫','Rare Holo':'🔥'}[r]||'🎴';}
+function openModal(){
+  selectedApiCard=null;
+  document.getElementById('modalOverlay').style.display='flex';
+  document.getElementById('selectedPreview').style.display='none';
+  document.getElementById('stepSet').style.display='';
+  document.getElementById('stepCards').style.display='none';
+  document.getElementById('stepCond').style.display='none';
+  document.getElementById('setSearchInp').value='';
+  document.getElementById('cardSearchInp').value='';
+  renderSets(allSets);
+}
+function closeModal(){document.getElementById('modalOverlay').style.display='none';}
+function closeModalBg(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+
+function emojiFor(r){return{'Alt Art':'🐉','Secret Rare':'✨','Rainbow Rare':'🌈','Gold Rare':'🌟','Full Art':'🎨','Ultra Rare':'💫','Rare Holo':'🔥','Common':'⚪','Uncommon':'🔵','Rare':'💎'}[r]||'🎴';}
 
 async function addCard(){
-  let card;
-  if((modalTab==='search'||modalTab==='set')&&selectedApiCard){
-    const c=selectedApiCard;
-    const cond=(modalTab==='search'?document.getElementById('sCond'):document.getElementById('setCond')).value;
-    const buyRaw=(modalTab==='search'?document.getElementById('sBuy'):document.getElementById('setBuy')).value;
-    card={
-      id:Date.now(),
-      name:c.name,
-      set:c.set?.name||'—',
-      setId:c.set?.id||'',
-      num:`${c.number||''}/${c.set?.printedTotal||''}`,
-      rarity:c.rarity||'Rare Holo',
-      condition:cond,
-      emoji:emojiFor(c.rarity||''),
-      buyPrice:parseFloat(buyRaw)||null,
-      imgSmall:c.images?.small||null,
-      prices:null
-    };
-  } else if(modalTab==='manual'){
-    const name=document.getElementById('fName').value.trim();
-    if(!name){toast('Entre le nom !');return;}
-    card={
-      id:Date.now(),name,
-      set:document.getElementById('fSet').value.trim()||'—',
-      num:document.getElementById('fNum').value.trim()||'—',
-      rarity:document.getElementById('fRarity').value,
-      condition:document.getElementById('fCond').value,
-      emoji:document.getElementById('fEmoji').value.trim()||emojiFor(document.getElementById('fRarity').value),
-      buyPrice:parseFloat(document.getElementById('fBuy').value)||null,
-      prices:null
-    };
-  } else {toast('Sélectionne une carte !');return;}
-
+  if(!selectedApiCard){toast('Sélectionne une carte !');return;}
+  const c=selectedApiCard;
+  const cm=c.cardmarket?.prices?.averageSellPrice||c.cardmarket?.prices?.trendPrice||null;
+  const tcg=c.tcgplayer?.prices?.holofoil?.market||c.tcgplayer?.prices?.normal?.market||null;
+  const card={
+    id:Date.now(),
+    pokeTcgId:c.id,
+    name:c.name,
+    set:c.set?.name||'—',
+    setId:c.set?.id||'',
+    num:`${c.number||''}/${c.set?.printedTotal||''}`,
+    rarity:c.rarity||'—',
+    condition:document.getElementById('condSel').value,
+    emoji:emojiFor(c.rarity||''),
+    buyPrice:parseFloat(document.getElementById('buyInp').value)||null,
+    imgSmall:c.images?.small||null,
+    prices: cm||tcg ? {
+      cm: cm?Math.round(cm*100)/100:null,
+      cm_low: c.cardmarket?.prices?.lowPrice||null,
+      cm_high: c.cardmarket?.prices?.highPrice||null,
+      cm_trend: c.cardmarket?.prices?.trendPrice||null,
+      tcg: tcg?Math.round(tcg*92)/100:null,
+      ebay: null,
+      ts: Date.now(),
+      at: new Date().toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})
+    } : null
+  };
   cards.unshift(card);
   closeModal();
   await saveAll();
   render();
-  toast('Carte ajoutée ! Lance un lot dans Planning pour les prix.');
+  toast(`${card.name} ajoutée${card.prices?` — CM: ${card.prices.cm||'?'}€`:''}  !`);
 }
 
-// CORE LOGIC
-function avg(c){if(!c.prices)return null;const v=[c.prices.cm,c.prices.eb,c.prices.mv,c.prices.pc].filter(Boolean);return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length*100)/100:null;}
-function totalVal(){return Math.round(cards.reduce((s,c)=>s+(avg(c)||0),0)*100)/100;}
+// ── HELPERS ──
+function cmPrice(c){return c.prices?.cm||null;}
+function totalVal(){return Math.round(cards.reduce((s,c)=>s+(cmPrice(c)||0),0)*100)/100;}
 function isStale(c){if(!c.prices||!c.prices.ts)return true;return(Date.now()-c.prices.ts)>7*24*3600*1000;}
-function profit(c){const a=avg(c);if(!a||!c.buyPrice)return null;return Math.round((a-c.buyPrice)*100)/100;}
-function getBatches(){const n=cards.filter(c=>!c.prices);const w=[...cards.filter(c=>c.prices)].sort((a,b)=>(avg(b)||0)-(avg(a)||0));const all=[...n,...w];const b=[];for(let i=0;i<all.length;i+=BATCH)b.push(all.slice(i,i+BATCH));return b;}
-function nextBatchIdx(){const b=getBatches();if(!b.length)return-1;if(!lastRun||lastRun.week!==wkKey())return 0;return(lastRun.idx+1)%b.length;}
-function daysToMonday(){const d=new Date().getDay();return d===1?7:(8-d)%7||7;}
-
-async function fetchBatchAI(batch){
-  const list=batch.map((c,i)=>`${i+1}. ${c.name} | ${c.set} | ${c.rarity} | ${c.condition}`).join('\n');
-  const prompt=`Expert cartes Pokémon françaises. Estime prix actuels euros pour ces ${batch.length} cartes FR. JSON uniquement, tableau de ${batch.length} objets, sans markdown:\n[{"cm":0,"eb":0,"mv":0,"pc":0}]\ncm=CardMarket FR, eb=eBay, mv=Mavin, pc=PriceCharting.\n${list}`;
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
-    const data=await res.json();
-    const txt=data.content.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
-    return JSON.parse(txt);
-  }catch(e){return batch.map(()=>{const b=25+Math.random()*180;return{cm:+b.toFixed(2),eb:+(b*1.1).toFixed(2),mv:+(b*1.04).toFixed(2),pc:+(b*.97).toFixed(2)};});}
-}
-
-async function runNextBatch(){
-  if(quota.used>=MAX_BATCHES){toast('Quota semaine atteint. Reviens lundi !');return;}
-  const batches=getBatches();if(!batches.length){toast('Aucune carte.');return;}
-  const idx=nextBatchIdx(),batch=batches[idx],btn=document.getElementById('runBtn');
-  btn.disabled=true;btn.textContent='⏳ Recherche...';
-  document.getElementById('progressWrap').style.display='';
-  document.getElementById('batchLabel').textContent=`Lot ${idx+1}/${batches.length} — ${batch.length} cartes`;
-  document.getElementById('batchFill').style.width='15%';
-  const results=await fetchBatchAI(batch);
-  document.getElementById('batchFill').style.width='90%';
-  batch.forEach((card,i)=>{const r=results[i]||{};card.prices={cm:r.cm||0,eb:r.eb||0,mv:r.mv||0,pc:r.pc||0,ts:Date.now(),at:new Date().toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})};});
-  quota.used++;lastRun={week:wkKey(),idx,ts:Date.now()};
-  document.getElementById('batchFill').style.width='100%';
-  await saveAll();await saveQuota();await saveLastRun();
-  setTimeout(()=>{document.getElementById('progressWrap').style.display='none';btn.disabled=quota.used>=MAX_BATCHES;btn.textContent=quota.used>=MAX_BATCHES?'✓ Quota atteint':'⚡ Lancer le prochain lot';},700);
-  render();toast(`Lot ${idx+1} actualisé — ${batch.length} cartes mises à jour`);
-}
-
-async function forceSnap(){
-  const wk=wkKey(),snap={};
-  for(const c of cards){if(c.prices){snap[c.id]={avg:avg(c),cm:c.prices.cm,eb:c.prices.eb,date:new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'})};}}
-  if(!Object.keys(snap).length){toast('Aucun prix à sauvegarder.');return;}
-  snaps[wk]=snap;await saveAll();toast('💾 Snapshot sauvegardé !');
-}
+function profit(c){const p=cmPrice(c);if(!p||!c.buyPrice)return null;return Math.round((p-c.buyPrice)*100)/100;}
+function getCardWkData(cid){return Object.keys(snaps).sort().map(w=>({wk:w,wkL:w.replace('-W','·S'),cm:snaps[w][cid]?.cm||null,ebay:snaps[w][cid]?.ebay||null,date:snaps[w][cid]?.date||''})).filter(d=>d.cm!==null);}
 
 async function delCard(id){
   if(!confirm('Supprimer cette carte ?'))return;
   cards=cards.filter(c=>c.id!==id);if(selCard===id)selCard=null;await saveAll();render();
 }
-
 function selToggle(id){selCard=selCard===id?null:id;renderDetail();renderCards();}
 function setFilter(m,el){filterMode=m;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderCards();}
-
 function sw(tab,el){
   curTab=tab;
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -614,28 +595,23 @@ function sw(tab,el){
   else if(tab==='historique')renderHistory();
 }
 
-function getCardWkData(cid){return Object.keys(snaps).sort().map(w=>({wk:w,wkL:w.replace('-W','·S'),price:snaps[w][cid]?.avg||null,date:snaps[w][cid]?.date||''})).filter(d=>d.price!==null);}
-
-function renderQuota(){
-  const pct=quota.used/MAX_BATCHES*100;
-  const gp=(quota.used/TOTAL_FREE*100).toFixed(1);
-  document.getElementById('quotaVal').textContent=`${quota.used}/${MAX_BATCHES} lots · ~${gp}% quota gratuit`;
-  const f=document.getElementById('quotaFill');
-  f.style.width=pct+'%';f.style.background=pct>=100?'#e83a4a':pct>=75?'#f5a623':'#1db97a';
-  document.getElementById('hdrSub').textContent=`${cards.length} cartes FR · snap dans ${daysToMonday()}j · ${Object.keys(snaps).length} sem.`;
-}
-
+// ── RENDER ──
 function renderStats(){
   const total=totalVal();
   const wks=Object.keys(snaps).sort();let chg=null;
-  if(wks.length>=2){let o=0,n=0;for(const c of cards){o+=(snaps[wks[wks.length-2]]?.[c.id]?.avg||0);n+=(snaps[wks[wks.length-1]]?.[c.id]?.avg||0);}if(o>0)chg=Math.round((n-o)/o*1000)/10;}
-  const best=[...cards].filter(c=>c.prices).sort((a,b)=>(avg(b)||0)-(avg(a)||0))[0];
+  if(wks.length>=2){
+    let o=0,n=0;
+    for(const c of cards){o+=(snaps[wks[wks.length-2]]?.[c.id]?.cm||0);n+=(snaps[wks[wks.length-1]]?.[c.id]?.cm||0);}
+    if(o>0)chg=Math.round((n-o)/o*1000)/10;
+  }
+  const best=[...cards].filter(c=>c.prices?.cm).sort((a,b)=>(b.prices.cm||0)-(a.prices.cm||0))[0];
   const profN=cards.filter(c=>profit(c)!==null&&profit(c)>0).length;
+  document.getElementById('hdrSub').textContent=`${cards.length} cartes FR · snap dans ${daysToMonday()}j · ${wks.length} sem.`;
   document.getElementById('statsGrid').innerHTML=`
-    <div class="sc"><div class="sc-l">Valeur totale</div><div class="sc-v">${total.toFixed(0)}€</div><div class="sc-s neu">${cards.length} carte${cards.length>1?'s':''}</div></div>
-    <div class="sc"><div class="sc-l">Évolution sem.</div><div class="sc-v ${chg===null?'neu':chg>=0?'up':'down'}">${chg===null?'—':(chg>=0?'+':'')+chg+'%'}</div></div>
-    <div class="sc"><div class="sc-l">Top carte</div><div class="sc-v" style="font-size:13px;line-height:1.3;">${best?best.emoji+' '+best.name.split(' ').slice(0,2).join(' '):'—'}</div><div class="sc-s up">${best?(avg(best)||0).toFixed(0)+'€':''}</div></div>
-    <div class="sc"><div class="sc-l">Plus-values</div><div class="sc-v up">${profN}</div><div class="sc-s neu">${cards.filter(c=>c.buyPrice).length} avec achat</div></div>`;
+    <div class="sc"><div class="sc-l">Valeur totale (CM)</div><div class="sc-v">${total.toFixed(0)}€</div><div class="sc-s neu">${cards.length} carte${cards.length>1?'s':''}</div></div>
+    <div class="sc"><div class="sc-l">Évolution sem.</div><div class="sc-v ${chg===null?'neu':chg>=0?'up':'down'}">${chg===null?'—':(chg>=0?'+':'')+chg+'%'}</div><div class="sc-s neu">${wks.length} snapshot${wks.length>1?'s':''}</div></div>
+    <div class="sc"><div class="sc-l">Top carte</div><div class="sc-v" style="font-size:12px;line-height:1.4;">${best?best.emoji+' '+best.name.split(' ').slice(0,3).join(' '):'—'}</div><div class="sc-s up">${best?(best.prices.cm||0).toFixed(0)+'€':''}</div></div>
+    <div class="sc"><div class="sc-l">Plus-values</div><div class="sc-v up">${profN}</div><div class="sc-s neu">${cards.filter(c=>c.buyPrice).length} avec prix achat</div></div>`;
 }
 
 function renderCards(){
@@ -645,22 +621,25 @@ function renderCards(){
   if(filterMode==='stale')list=list.filter(isStale);
   else if(filterMode==='psa')list=list.filter(c=>c.condition.includes('PSA'));
   else if(filterMode==='profit')list=list.filter(c=>profit(c)!==null&&profit(c)>0);
-  list.sort((a,b)=>(avg(b)||0)-(avg(a)||0));
+  list.sort((a,b)=>(b.prices?.cm||0)-(a.prices?.cm||0));
   const el=document.getElementById('cardList');
-  if(!list.length){el.innerHTML=`<div class="empty-state"><div class="empty-emoji">🎴</div><div class="empty-title">${q||filterMode?'Aucun résultat':'Collection vide'}</div><div class="empty-sub">${q||filterMode?'Essaie un autre filtre':'Appuie sur + pour ajouter ta première carte !'}</div></div>`;return;}
+  if(!list.length){
+    el.innerHTML=`<div class="empty-state"><div class="empty-emoji">🎴</div><div class="empty-title">${q||filterMode?'Aucun résultat':'Collection vide'}</div><div class="empty-sub">${q||filterMode?'Essaie un autre filtre':'Appuie sur + pour ajouter ta première carte !'}</div></div>`;
+    return;
+  }
   el.innerHTML=list.map(card=>{
-    const a=avg(card),stale=isStale(card),wkData=getCardWkData(card.id);
-    const prev=wkData.length>=2?wkData[wkData.length-2].price:null,cur=wkData.length?wkData[wkData.length-1].price:null;
+    const p=cmPrice(card),stale=isStale(card);
+    const wkData=getCardWkData(card.id);
+    const prev=wkData.length>=2?wkData[wkData.length-2].cm:null,cur=wkData.length?wkData[wkData.length-1].cm:null;
     const pct=(prev&&cur&&prev>0)?((cur-prev)/prev*100).toFixed(1):null;
-    const cc=pct>0?'up':pct<0?'down':'neu';
     const pr=profit(card);
-    const thumb=card.imgSmall?`<img src="${card.imgSmall}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" loading="lazy" onerror="this.parentElement.textContent='${card.emoji}'">`:`${card.emoji}`;
-    const badges=`<span class="bdg b-fr">FR</span>${card.rarity?`<span class="bdg b-h">${card.rarity.split(' ')[0]}</span>`:''} ${card.condition.includes('PSA')?`<span class="bdg b-psa">${card.condition}</span>`:''} ${stale&&card.prices?`<span class="bdg b-stale">ancien</span>`:''}`;
+    const thumb=card.imgSmall?`<img src="${card.imgSmall}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" loading="lazy" onerror="this.parentElement.innerHTML='${card.emoji}'">`:`${card.emoji}`;
+    const badges=`<span class="bdg b-fr">FR</span>${card.rarity&&card.rarity!=='—'?`<span class="bdg b-h">${card.rarity.split(' ')[0]}</span>`:''} ${card.condition.includes('PSA')?`<span class="bdg b-psa">${card.condition}</span>`:''} ${stale&&card.prices?`<span class="bdg b-stale">ancien</span>`:''}`;
     return `<div class="ci${selCard===card.id?' selected':''}" onclick="selToggle(${card.id})">
       <div class="ct">${thumb}</div>
       <div class="ci-info"><div class="ci-name">${card.name}</div><div class="ci-meta">${card.set} · ${card.num}</div><div class="badges">${badges}</div></div>
       <div class="ci-right">
-        ${card.prices?`<div class="pv">${a?a.toFixed(2)+'€':'—'}</div>${pr!==null?`<div class="pv-buy">${pr>=0?'+':''}${pr.toFixed(2)}€</div>`:''}<div class="pc ${cc}">${pct?(pct>0?'+':'')+pct+'%':'—'}</div>`:`<div style="font-size:10px;color:var(--text2);">pas de prix</div>`}
+        ${card.prices?.cm?`<div class="pv">${card.prices.cm.toFixed(2)}€</div>${pr!==null?`<div class="pv-buy">${pr>=0?'+':''}${pr.toFixed(2)}€</div>`:''}<div class="pc ${pct>0?'up':pct<0?'down':'neu'}">${pct?(pct>0?'+':'')+pct+'%':'—'}</div>`:`<div style="font-size:10px;color:var(--text2);">pas de prix</div>`}
       </div>
     </div>`;
   }).join('');
@@ -671,71 +650,93 @@ function renderDetail(){
   const card=cards.find(c=>c.id===selCard);
   if(chartInst){chartInst.destroy();chartInst=null;}
   if(!card||!card.prices){panel.innerHTML='';return;}
-  const a=avg(card),pr=profit(card),wkData=getCardWkData(card.id);
+  const p=card.prices,pr=profit(card),wkData=getCardWkData(card.id);
   panel.innerHTML=`<div class="detail-card">
     <div class="detail-hdr">
       <div style="display:flex;gap:10px;align-items:flex-start;flex:1;min-width:0;">
-        ${card.imgSmall?`<img src="${card.imgSmall}" style="width:40px;height:56px;border-radius:7px;object-fit:cover;flex-shrink:0;">`:`<div style="font-size:30px;flex-shrink:0;">${card.emoji}</div>`}
-        <div style="min-width:0;"><div class="detail-name">${card.name}</div><div class="detail-meta">${card.set} · ${card.num} · ${card.condition}</div></div>
+        ${card.imgSmall?`<img src="${card.imgSmall}" style="width:44px;height:62px;border-radius:7px;object-fit:cover;flex-shrink:0;">`:`<div style="font-size:32px;flex-shrink:0;">${card.emoji}</div>`}
+        <div style="min-width:0;">
+          <div class="detail-name">${card.name}</div>
+          <div class="detail-meta">${card.set} · ${card.num} · ${card.condition}</div>
+        </div>
       </div>
-      <div style="text-align:right;flex-shrink:0;"><div class="detail-avg">${a?a.toFixed(2)+'€':'—'}</div><div class="detail-avgsub">moy. 4 sources</div></div>
     </div>
-    <div class="src-grid">
-      <div class="src"><div class="src-n">CardMarket</div><div class="src-p">${card.prices.cm?card.prices.cm.toFixed(2)+'€':'—'}</div></div>
-      <div class="src"><div class="src-n">eBay</div><div class="src-p">${card.prices.eb?card.prices.eb.toFixed(2)+'€':'—'}</div></div>
-      <div class="src"><div class="src-n">Mavin</div><div class="src-p">${card.prices.mv?card.prices.mv.toFixed(2)+'€':'—'}</div></div>
-      <div class="src"><div class="src-n">PriceCharting</div><div class="src-p">${card.prices.pc?card.prices.pc.toFixed(2)+'€':'—'}</div></div>
+    <div class="prices-row">
+      <div class="price-block">
+        <div class="price-block-logo">🟢 CardMarket<span class="price-source-badge badge-cm">LIVE</span></div>
+        <div class="price-block-main">${p.cm?p.cm.toFixed(2)+'€':'—'}</div>
+        ${p.cm_low&&p.cm_high?`<div class="price-block-range">${p.cm_low.toFixed(2)}€ — ${p.cm_high.toFixed(2)}€</div>`:''}
+        ${p.cm_trend?`<div class="price-block-sub">Tendance: ${p.cm_trend.toFixed(2)}€</div>`:''}
+      </div>
+      <div class="price-block">
+        <div class="price-block-logo">${EBAY_APP_ID?'🔵 eBay':'🔵 TCGPlayer'}<span class="price-source-badge badge-ebay">LIVE</span></div>
+        <div class="price-block-main">${EBAY_APP_ID?(p.ebay?p.ebay.toFixed(2)+'€':'—'):(p.tcg?p.tcg.toFixed(2)+'€':'—')}</div>
+        <div class="price-block-sub">${EBAY_APP_ID?'Ventes récentes FR':'Prix marché USD→EUR'}</div>
+      </div>
     </div>
-    ${card.buyPrice&&pr!==null?`<div class="profit"><div style="font-size:9px;color:var(--text2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;">Plus/moins-value</div><div style="font-size:14px;font-weight:700;font-family:var(--mono);" class="${pr>=0?'up':'down'}">${pr>=0?'+':''}${pr.toFixed(2)}€ (${pr>=0?'+':''}${Math.round(pr/card.buyPrice*100)}%)</div></div>`:''}
-    ${wkData.length>=2?`<div class="chart-wrap"><canvas id="wkChart" role="img" aria-label="Prix ${card.name}">Historique prix.</canvas></div>`:`<div style="font-size:10px;color:var(--text2);font-family:var(--mono);margin-bottom:8px;">Graphique après 2 snapshots</div>`}
+    ${card.buyPrice&&pr!==null?`<div class="profit-block"><div style="font-size:9px;color:var(--text2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;">Plus/moins-value</div><div style="font-size:15px;font-weight:700;font-family:var(--mono);" class="${pr>=0?'up':'down'}">${pr>=0?'+':''}${pr.toFixed(2)}€ (${pr>=0?'+':''}${Math.round(pr/card.buyPrice*100)}%)</div></div>`:''}
+    ${wkData.length>=2?`<div style="font-size:10px;color:var(--text2);font-family:var(--mono);margin-bottom:5px;">Historique CardMarket</div><div class="chart-wrap"><canvas id="wkChart" role="img" aria-label="Prix ${card.name}"></canvas></div>`:``}
+    <div class="last-update"><span class="live-dot"></span>Màj: ${p.at||'—'} <button onclick="refreshOneCard(${card.id})" style="background:none;border:none;color:var(--text2);font-size:11px;text-decoration:underline;cursor:pointer;font-family:var(--mono);">Actualiser</button></div>
     <div class="detail-actions">
       <button class="act-btn" onclick="delCard(${card.id})">🗑 Supprimer</button>
-      <button class="act-btn" style="font-size:10px;font-family:var(--mono);">Màj: ${card.prices.at||'—'}</button>
+      ${card.pokeTcgId?`<button class="act-btn" onclick="window.open('https://www.cardmarket.com/fr/Pokemon/Products/Singles?searchString=${encodeURIComponent(card.name)}','_blank')">🛒 CardMarket</button>`:''}
     </div>
   </div>`;
   if(wkData.length>=2){
     setTimeout(()=>{
       const ctx=document.getElementById('wkChart');if(!ctx)return;
-      chartInst=new Chart(ctx,{type:'line',data:{labels:wkData.map(d=>d.wkL),datasets:[{label:'Prix €',data:wkData.map(d=>d.price),borderColor:'#e83a4a',backgroundColor:'rgba(232,58,74,0.08)',pointBackgroundColor:'#e83a4a',pointRadius:3,tension:0.3,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9},color:'#888899',autoSkip:false,maxRotation:0},grid:{display:false}},y:{ticks:{font:{size:9},color:'#888899',callback:v=>v+'€'},grid:{color:'rgba(255,255,255,0.04)'}}}}});
+      chartInst=new Chart(ctx,{type:'line',data:{
+        labels:wkData.map(d=>d.wkL),
+        datasets:[{label:'CM €',data:wkData.map(d=>d.cm),borderColor:'#1db97a',backgroundColor:'rgba(29,185,122,0.08)',pointBackgroundColor:'#1db97a',pointRadius:3,tension:0.3,fill:true}]
+      },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9},color:'#888899',autoSkip:false,maxRotation:0},grid:{display:false}},y:{ticks:{font:{size:9},color:'#888899',callback:v=>v+'€'},grid:{color:'rgba(255,255,255,0.04)'}}}}});
     },80);
   }
 }
 
+async function refreshOneCard(id){
+  const card=cards.find(c=>c.id===id);if(!card||!card.pokeTcgId)return;
+  toast('Actualisation...');
+  const p=await fetchRealPrices(card);
+  if(p){card.prices=p;await saveAll();render();toast('Prix mis à jour !');}
+  else toast('Erreur de récupération.');
+}
+
 function renderPlanning(){
-  const batches=getBatches();
-  const btn=document.getElementById('runBtn');
-  btn.disabled=quota.used>=MAX_BATCHES;
-  btn.textContent=quota.used>=MAX_BATCHES?'✓ Quota semaine atteint':'⚡ Lancer le prochain lot';
-  if(!batches.length){document.getElementById('queueContent').innerHTML='<div class="no-snap">Ajoute des cartes pour planifier.</div>';return;}
-  const curIdx=lastRun&&lastRun.week===wkKey()?lastRun.idx:-1;
-  const dayNames=['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
-  document.getElementById('queueContent').innerHTML=batches.map((batch,i)=>{
-    const done=lastRun&&lastRun.week===wkKey()&&i<=lastRun.idx;
-    const isCur=i===(curIdx+1)%batches.length&&!done;
-    return `<div class="batch-card">
-      <div class="batch-header"><div class="batch-title">${done?'✓ Fait':isCur?'→ Suivant':`Lot ${i+1}`}</div><div class="batch-day">${dayNames[Math.floor(i*7/Math.max(batches.length,1))%7]} · ${batch.length} cartes</div></div>
-      <div class="batch-cards">${batch.map(c=>`<div class="batch-pill${done?' done':isCur?' current':''}">${c.emoji} ${c.name.split(' ')[0]}</div>`).join('')}</div>
-    </div>`;
-  }).join('');
+  document.getElementById('runBtn').textContent='⚡ Actualiser tous les prix maintenant';
+  document.getElementById('runBtn').disabled=false;
+  const staleCards=cards.filter(isStale);
+  document.getElementById('queueContent').innerHTML=`
+    <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:var(--r);padding:11px 13px;margin-bottom:7px;">
+      <div style="font-size:11px;color:var(--text2);font-family:var(--mono);margin-bottom:6px;">STATUT COLLECTION</div>
+      <div style="font-size:13px;margin-bottom:4px;">✅ À jour : <strong>${cards.filter(c=>!isStale(c)&&c.prices).length}</strong> cartes</div>
+      <div style="font-size:13px;margin-bottom:4px;">⏰ À actualiser : <strong>${staleCards.length}</strong> cartes</div>
+      <div style="font-size:13px;">📊 Sans prix : <strong>${cards.filter(c=>!c.prices).length}</strong> cartes</div>
+    </div>
+    ${lastRun?`<div style="font-size:10px;color:var(--text2);font-family:var(--mono);margin-bottom:8px;">Dernière màj : ${new Date(lastRun.ts).toLocaleString('fr-FR')}</div>`:''}`;
 }
 
 function renderHistory(){
   const sorted=Object.keys(snaps).sort().reverse();
-  if(!sorted.length){document.getElementById('histContent').innerHTML='<div class="no-snap"><div style="font-size:36px;margin-bottom:10px;">📊</div>Aucun snapshot encore.<br><span style="font-size:11px;">Sauvegarde hebdomadaire automatique chaque lundi.</span></div>';return;}
-  document.getElementById('histContent').innerHTML=cards.filter(c=>c.prices).map(card=>{
+  if(!sorted.length){document.getElementById('histContent').innerHTML='<div class="no-snap"><div style="font-size:36px;margin-bottom:10px;">📊</div>Aucun snapshot encore.<br><span style="font-size:11px;">Snapshot automatique chaque semaine.</span></div>';return;}
+  document.getElementById('histContent').innerHTML=cards.filter(c=>c.prices?.cm).map(card=>{
     const rows=sorted.map(wk=>{
-      const s=snaps[wk]?.[card.id];if(!s)return'';
+      const s=snaps[wk]?.[card.id];if(!s||!s.cm)return'';
       const prevWk=sorted[sorted.indexOf(wk)+1];
-      const prev=prevWk?snaps[prevWk]?.[card.id]?.avg:null;
-      const chg=(prev&&s.avg&&prev>0)?((s.avg-prev)/prev*100).toFixed(1):null;
-      return`<tr><td>${s.date||wk}</td><td style="font-weight:700;">${s.avg?s.avg.toFixed(2)+'€':'—'}</td><td>${s.cm?s.cm.toFixed(2)+'€':'—'}</td><td class="${chg>0?'up':chg<0?'down':'neu'}">${chg?(chg>0?'+':'')+chg+'%':'—'}</td></tr>`;
+      const prev=prevWk?snaps[prevWk]?.[card.id]?.cm:null;
+      const chg=(prev&&s.cm&&prev>0)?((s.cm-prev)/prev*100).toFixed(1):null;
+      return`<tr><td>${s.date||wk}</td><td style="font-weight:700;color:var(--green);">${s.cm.toFixed(2)}€</td><td>${s.ebay?s.ebay.toFixed(2)+'€':'—'}</td><td class="${chg>0?'up':chg<0?'down':'neu'}">${chg?(chg>0?'+':'')+chg+'%':'—'}</td></tr>`;
     }).filter(Boolean).join('');
     if(!rows)return'';
-    return`<div class="hist-card"><div class="hist-card-name">${card.imgSmall?`<img src="${card.imgSmall}" style="width:20px;height:28px;border-radius:3px;object-fit:cover;vertical-align:middle;margin-right:6px;">`:''}${card.name}</div><table class="hist-table"><thead><tr><th>Semaine</th><th>Moy.</th><th>CM</th><th>Évol.</th></tr></thead><tbody>${rows}</tbody></table></div>`;
-  }).filter(Boolean).join('')||'<div class="no-snap">Aucune donnée pour les cartes actuelles.</div>';
+    return`<div class="hist-card"><div class="hist-card-name">${card.imgSmall?`<img src="${card.imgSmall}" style="width:20px;height:28px;border-radius:3px;object-fit:cover;">`:''}${card.name}</div><table class="hist-table"><thead><tr><th>Semaine</th><th>CardMarket</th><th>eBay</th><th>Évol.</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }).filter(Boolean).join('')||'<div class="no-snap">Aucune donnée historique.</div>';
 }
 
-function render(){renderQuota();renderStats();if(curTab==='collection'){renderCards();renderDetail();}else if(curTab==='planning')renderPlanning();else if(curTab==='historique')renderHistory();}
+function render(){
+  renderStats();
+  if(curTab==='collection'){renderCards();renderDetail();}
+  else if(curTab==='planning')renderPlanning();
+  else if(curTab==='historique')renderHistory();
+}
 
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
 load();
