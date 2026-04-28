@@ -1,4 +1,4 @@
-const CACHE = 'pkmn-v6';
+const CACHE = 'pkmn-v7';
 const ASSETS = ['/followcollection/', '/followcollection/index.html'];
 
 self.addEventListener('install', e => {

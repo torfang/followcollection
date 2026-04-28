@@ -161,6 +161,17 @@ body{display:flex;flex-direction:column;height:100dvh;}
 @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
 .spinner-inline{display:inline-block;width:12px;height:12px;border:2px solid var(--border2);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;}
 @keyframes spin{to{transform:rotate(360deg);}}
+
+.manual-price-row{background:var(--bg3);border-radius:12px;padding:12px 14px;margin-bottom:10px;border:.5px solid var(--border2);}
+.manual-price-label{font-size:10px;color:var(--text2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+.manual-price-inp-row{display:flex;align-items:center;gap:8px;}
+.manual-price-inp{flex:1;background:var(--bg2);border:.5px solid var(--border2);border-radius:10px;padding:10px 12px;font-size:18px;font-weight:700;color:var(--text);font-family:var(--mono);outline:none;-moz-appearance:textfield;}
+.manual-price-inp::-webkit-outer-spin-button,.manual-price-inp::-webkit-inner-spin-button{-webkit-appearance:none;}
+.manual-price-inp:focus{border-color:var(--green);}
+.manual-price-unit{font-size:20px;font-weight:700;color:var(--text2);font-family:var(--mono);}
+.manual-price-btn{width:44px;height:44px;border-radius:10px;background:var(--green);border:none;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.manual-price-btn:active{transform:scale(.95);}
+.manual-price-set{font-size:10px;color:var(--text2);font-family:var(--mono);margin-top:6px;}
 </style>
 </head>
 <body>
@@ -571,7 +582,7 @@ async function addCard(){
 }
 
 // ── HELPERS ──
-function cmPrice(c){return c.prices?.cm||null;}
+function cmPrice(c){return c.prices?.manualCm||c.prices?.cm||null;}
 function totalVal(){return Math.round(cards.reduce((s,c)=>s+(cmPrice(c)||0),0)*100)/100;}
 function isStale(c){if(!c.prices||!c.prices.ts)return true;return(Date.now()-c.prices.ts)>7*24*3600*1000;}
 function profit(c){const p=cmPrice(c);if(!p||!c.buyPrice)return null;return Math.round((p-c.buyPrice)*100)/100;}
@@ -649,8 +660,9 @@ function renderDetail(){
   const panel=document.getElementById('detailPanel');
   const card=cards.find(c=>c.id===selCard);
   if(chartInst){chartInst.destroy();chartInst=null;}
-  if(!card||!card.prices){panel.innerHTML='';return;}
-  const p=card.prices,pr=profit(card),wkData=getCardWkData(card.id);
+  if(!card){panel.innerHTML='';return;}
+  const p=card.prices||{},pr=profit(card),wkData=getCardWkData(card.id);
+  const displayCm=p.manualCm||p.cm||null;
   panel.innerHTML=`<div class="detail-card">
     <div class="detail-hdr">
       <div style="display:flex;gap:10px;align-items:flex-start;flex:1;min-width:0;">
@@ -661,10 +673,19 @@ function renderDetail(){
         </div>
       </div>
     </div>
+    <div class="manual-price-row">
+      <div class="manual-price-label">💰 Prix CardMarket</div>
+      <div class="manual-price-inp-row">
+        <input class="manual-price-inp" id="manualPriceInp" type="number" step="0.01" placeholder="0.00" value="${displayCm||''}"/>
+        <span class="manual-price-unit">€</span>
+        <button class="manual-price-btn" onclick="saveManualPrice(${card.id})">✓</button>
+      </div>
+      ${p.manualCm?`<div class="manual-price-set">✏️ Saisi manuellement · API: ${p.cm?p.cm.toFixed(2)+'€':'—'}</div>`:p.cm?`<div class="manual-price-set">🔄 Prix API · modifie si besoin</div>`:''}
+    </div>
     <div class="prices-row">
       <div class="price-block">
-        <div class="price-block-logo">🟢 CardMarket<span class="price-source-badge badge-cm">LIVE</span></div>
-        <div class="price-block-main">${p.cm?p.cm.toFixed(2)+'€':'—'}</div>
+        <div class="price-block-logo">🟢 CardMarket<span class="price-source-badge badge-cm">${p.manualCm?'MANUEL':'LIVE'}</span></div>
+        <div class="price-block-main">${displayCm?displayCm.toFixed(2)+'€':'—'}</div>
         ${p.cm_low&&p.cm_high?`<div class="price-block-range">${p.cm_low.toFixed(2)}€ — ${p.cm_high.toFixed(2)}€</div>`:''}
         ${p.cm_trend?`<div class="price-block-sub">Tendance: ${p.cm_trend.toFixed(2)}€</div>`:''}
       </div>
@@ -676,7 +697,7 @@ function renderDetail(){
     </div>
     ${card.buyPrice&&pr!==null?`<div class="profit-block"><div style="font-size:9px;color:var(--text2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;">Plus/moins-value</div><div style="font-size:15px;font-weight:700;font-family:var(--mono);" class="${pr>=0?'up':'down'}">${pr>=0?'+':''}${pr.toFixed(2)}€ (${pr>=0?'+':''}${Math.round(pr/card.buyPrice*100)}%)</div></div>`:''}
     ${wkData.length>=2?`<div style="font-size:10px;color:var(--text2);font-family:var(--mono);margin-bottom:5px;">Historique CardMarket</div><div class="chart-wrap"><canvas id="wkChart" role="img" aria-label="Prix ${card.name}"></canvas></div>`:``}
-    <div class="last-update"><span class="live-dot"></span>Màj: ${p.at||'—'} <button onclick="refreshOneCard(${card.id})" style="background:none;border:none;color:var(--text2);font-size:11px;text-decoration:underline;cursor:pointer;font-family:var(--mono);">Actualiser</button></div>
+    <div class="last-update"><span class="live-dot"></span>Màj: ${p.at||'—'} <button onclick="refreshOneCard(${card.id})" style="background:none;border:none;color:var(--text2);font-size:11px;text-decoration:underline;cursor:pointer;font-family:var(--mono);">Actualiser API</button></div>
     <div class="detail-actions">
       <button class="act-btn" onclick="delCard(${card.id})">🗑 Supprimer</button>
       ${card.pokeTcgId?`<button class="act-btn" onclick="window.open('https://www.cardmarket.com/fr/Pokemon/Products/Singles?searchString=${encodeURIComponent(card.name)}','_blank')">🛒 CardMarket</button>`:''}
@@ -691,6 +712,18 @@ function renderDetail(){
       },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9},color:'#888899',autoSkip:false,maxRotation:0},grid:{display:false}},y:{ticks:{font:{size:9},color:'#888899',callback:v=>v+'€'},grid:{color:'rgba(255,255,255,0.04)'}}}}});
     },80);
   }
+}
+
+async function saveManualPrice(id){
+  const card=cards.find(c=>c.id===id);if(!card)return;
+  const val=parseFloat(document.getElementById('manualPriceInp').value);
+  if(!val||val<=0){toast('Entre un prix valide !');return;}
+  if(!card.prices)card.prices={ts:Date.now(),at:new Date().toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})};
+  card.prices.manualCm=Math.round(val*100)/100;
+  card.prices.manualAt=new Date().toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+  await saveAll();
+  render();
+  toast('Prix sauvegardé — '+val.toFixed(2)+'€ ✓');
 }
 
 async function refreshOneCard(id){
