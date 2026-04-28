@@ -576,9 +576,12 @@ async function addCard(){
   };
   cards.unshift(card);
   closeModal();
+  selCard = card.id;
   await saveAll();
   render();
-  toast(`${card.name} ajoutée${card.prices?` — CM: ${card.prices.cm||'?'}€`:''}  !`);
+  // Scroll to top to show the detail panel
+  document.getElementById('mainScroll').scrollTo({top:0,behavior:'smooth'});
+  toast(`${card.name} ajoutée !`);
 }
 
 // ── HELPERS ──
@@ -650,7 +653,15 @@ function renderCards(){
       <div class="ct">${thumb}</div>
       <div class="ci-info"><div class="ci-name">${card.name}</div><div class="ci-meta">${card.set} · ${card.num}</div><div class="badges">${badges}</div></div>
       <div class="ci-right">
-        ${card.prices?.cm?`<div class="pv">${card.prices.cm.toFixed(2)}€</div>${pr!==null?`<div class="pv-buy">${pr>=0?'+':''}${pr.toFixed(2)}€</div>`:''}<div class="pc ${pct>0?'up':pct<0?'down':'neu'}">${pct?(pct>0?'+':'')+pct+'%':'—'}</div>`:`<div style="font-size:10px;color:var(--text2);">pas de prix</div>`}
+        ${(()=>{
+          const cp=card.prices;
+          if(!cp)return'<div style="font-size:10px;color:var(--text2);">pas de prix</div>';
+          const main=cp.manualCm||cp.cm||cp.tcg||cp.ebay||null;
+          if(!main)return'<div style="font-size:10px;color:var(--text2);">pas de prix</div>';
+          const src=cp.manualCm?'✏️':cp.cm?'🟢':cp.tcg?'🔵':'🔵';
+          const sub3=[cp.manualCm?null:`CM:${cp.cm?cp.cm.toFixed(0)+'€':'—'}`,`TCG:${cp.tcg?cp.tcg.toFixed(0)+'€':'—'}`,`eBay:${cp.ebay?cp.ebay.toFixed(0)+'€':'—'}`].filter(Boolean).join(' ');
+          return \`<div class="pv">\${src} \${main.toFixed(2)}€</div>\${pr!==null?\`<div class="pv-buy">\${pr>=0?'+':''}\${pr.toFixed(2)}€</div>\`:''}<div class="pc neu" style="font-size:9px;">\${sub3}</div><div class="pc \${pct>0?'up':pct<0?'down':'neu'}">\${pct?(pct>0?'+':'')+pct+'%':''}</div>\`;
+        })()}
       </div>
     </div>`;
   }).join('');
